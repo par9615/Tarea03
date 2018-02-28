@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -23,10 +25,14 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTitle;
         public TextView mStore;
+        public TextView mLocation;
+        public TextView mPhone;
         public ViewHolder(View v){
             super(v);
             mTitle = v.findViewById(R.id.item_product_title);
             mStore = v.findViewById(R.id.item_product_store);
+            mLocation = v.findViewById(R.id.item_product_location);
+            mPhone = v.findViewById(R.id.item_product_phone);
         }
     }
     @Override
@@ -41,6 +47,8 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mTitle.setText(products.get(position).getTitle());
         holder.mStore.setText(products.get(position).getStore());
+        holder.mLocation.setText(products.get(position).getLocation());
+        holder.mPhone.setText(products.get(position).getPhone());
     }
 
     @Override

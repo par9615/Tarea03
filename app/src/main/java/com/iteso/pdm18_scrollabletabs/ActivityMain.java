@@ -1,5 +1,7 @@
 package com.iteso.pdm18_scrollabletabs;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -18,8 +20,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -92,6 +98,19 @@ public class ActivityMain extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void clickPhone(View view)
+    {
+        Uri phoneNumber = Uri.parse("tel:" + ((TextView)view).getText());
+        Intent callIntent = new Intent(Intent.ACTION_DIAL, phoneNumber);
+        startActivity(callIntent);
+    }
+
+    public void clickProduct(View view)
+    {
+            
+    }
+
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -130,9 +149,9 @@ public class ActivityMain extends AppCompatActivity {
             recyclerView.setLayoutManager(mLayoutManager);
 
             ArrayList<ItemProduct> products = new ArrayList<>();
-            products.add(new ItemProduct("Mac", "BestBuy"));
-            products.add(new ItemProduct("Alienware", "DELL"));
-            products.add(new ItemProduct("Lanix", "Saint Jhonny"));
+            products.add(new ItemProduct("Mac", "BestBuy", "Av. Patria", "123456789" ));
+            products.add(new ItemProduct("Alienware", "DELL", "Av. López Mateos", "9876554321"));
+            products.add(new ItemProduct("Lanix", "Saint Jhonny", "Taiwan de Dios", "1213141516"));
 
             AdapterProduct adapterProduct = new AdapterProduct(products);
             recyclerView.setAdapter(adapterProduct);
@@ -174,6 +193,8 @@ public class ActivityMain extends AppCompatActivity {
             return null;
         }
     }
+
+
 }
 
 
