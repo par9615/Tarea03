@@ -134,9 +134,9 @@ public class ActivityMain extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position){
-                case 0 : return "Technology";
-                case 1 : return "Home";
-                case 2 : return "Electronics";
+                case 0 : return getString(R.string.tab_title_0);
+                case 1 : return getString(R.string.tab_title_1);
+                case 2 : return getString(R.string.tab_title_2);
             }
             return null;
         }
