@@ -54,6 +54,8 @@ public class ItemProduct {
         return "ItemProduct{" +
                 "title='" + title + '\'' +
                 ", store='" + store + '\'' +
+                ", location='" + location + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }

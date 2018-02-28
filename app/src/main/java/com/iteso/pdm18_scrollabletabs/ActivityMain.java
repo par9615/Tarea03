@@ -105,10 +105,6 @@ public class ActivityMain extends AppCompatActivity {
         startActivity(callIntent);
     }
 
-    public void clickProduct(View view)
-    {
-            
-    }
 
 
     /**
