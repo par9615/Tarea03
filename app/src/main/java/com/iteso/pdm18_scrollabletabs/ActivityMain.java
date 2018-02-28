@@ -21,11 +21,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
-
-import org.w3c.dom.Text;
+import com.iteso.pdm18_scrollabletabs.fragments.FragmentElectronics;
+import com.iteso.pdm18_scrollabletabs.fragments.FragmentHome;
+import com.iteso.pdm18_scrollabletabs.fragments.FragmentTechnology;
 
 import java.util.ArrayList;
 
@@ -98,64 +98,6 @@ public class ActivityMain extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void clickPhone(View view)
-    {
-        Uri phoneNumber = Uri.parse("tel:" + ((TextView)view).getText());
-        Intent callIntent = new Intent(Intent.ACTION_DIAL, phoneNumber);
-        startActivity(callIntent);
-    }
-
-
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_activity_main, container, false);
-
-            RecyclerView recyclerView = rootView.findViewById(R.id.fragment_recycler_view);
-
-            recyclerView.setHasFixedSize(true);
-            // Use a linear layout manager
-            LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(mLayoutManager);
-
-            ArrayList<ItemProduct> products = new ArrayList<>();
-            products.add(new ItemProduct("Mac", "BestBuy", "Av. Patria", "123456789" ));
-            products.add(new ItemProduct("Alienware", "DELL", "Av. López Mateos", "9876554321"));
-            products.add(new ItemProduct("Lanix", "Saint Jhonny", "Taiwan de Dios", "1213141516"));
-
-            AdapterProduct adapterProduct = new AdapterProduct(products);
-            recyclerView.setAdapter(adapterProduct);
-
-            return rootView;
-        }
-    }
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -170,7 +112,17 @@ public class ActivityMain extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position)
+            {
+                case 0:
+                    return new FragmentTechnology();
+                case 1:
+                    return new FragmentHome();
+                case 2:
+                    return new FragmentElectronics();
+                default:
+                    return new FragmentTechnology();
+            }
         }
 
         @Override
