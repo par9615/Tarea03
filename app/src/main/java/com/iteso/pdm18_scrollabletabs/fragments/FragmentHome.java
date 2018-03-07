@@ -35,7 +35,7 @@ public class FragmentHome extends android.support.v4.app.Fragment {
         products.add(new ItemProduct("Alienware H", "DELL", "Av. López Mateos", "9876554321", R.drawable.alienware));
         products.add(new ItemProduct("Lanix H", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac));
 
-        AdapterProduct adapterProduct = new AdapterProduct(products);
+        AdapterProduct adapterProduct = new AdapterProduct(products, this.getContext());
         recyclerView.setAdapter(adapterProduct);
 
         return rootView;

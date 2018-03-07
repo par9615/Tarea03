@@ -1,5 +1,6 @@
 package com.iteso.pdm18_scrollabletabs;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -23,9 +24,11 @@ import java.util.ArrayList;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder>{
     ArrayList<ItemProduct> products;
+    static Context context;
 
-    public AdapterProduct(ArrayList<ItemProduct> products){
+    public AdapterProduct(ArrayList<ItemProduct> products, Context context){
         this.products = products;
+        this.context = context;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -50,9 +53,14 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), itemProduct.toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(view.getContext(), itemProduct.toString(), Toast.LENGTH_LONG).show();
+            Intent intent  = new Intent(context, ActivityProduct.class);
+            intent.putExtra("ITEM", itemProduct);
+            context.startActivity(intent);
+
         }
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
