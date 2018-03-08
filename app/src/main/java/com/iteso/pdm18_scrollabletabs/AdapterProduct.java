@@ -27,6 +27,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     ArrayList<ItemProduct> products;
     private static int fragmentId;
     static Context context;
+    private static final int FRAGMENT = 0;
 
     public AdapterProduct(ArrayList<ItemProduct> products, Context context, int fragmentId){
         this.products = products;
@@ -62,8 +63,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             //Toast.makeText(view.getContext(), itemProduct.toString(), Toast.LENGTH_LONG).show();
             Intent intent  = new Intent(context, ActivityProduct.class);
             intent.putExtra("ITEM", itemProduct);
-            intent.putExtra("FRAGMENT", fragmentId);
-            Log.d("Error","Llamada -> " + fragmentId);
+            intent.putExtra("FRAGMENT", FRAGMENT);
             ((ActivityMain)context).startActivityForResult(intent, 1);
 
         }
