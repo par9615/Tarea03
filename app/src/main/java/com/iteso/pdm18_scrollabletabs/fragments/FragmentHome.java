@@ -18,7 +18,11 @@ import java.util.ArrayList;
  */
 
 public class FragmentHome extends android.support.v4.app.Fragment {
-    public FragmentHome(){};
+    private AdapterProduct adapterProduct;
+    private ArrayList<ItemProduct> products;
+    private static final int FRAGMENT_HOME = 1;
+
+    public FragmentHome(){}
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_technology, container, false);
@@ -30,15 +34,27 @@ public class FragmentHome extends android.support.v4.app.Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        ArrayList<ItemProduct> products = new ArrayList<>();
-        products.add(new ItemProduct("Mac H", "BestBuy", "Av. Patria", "123456789", R.drawable.mac));
-        products.add(new ItemProduct("Alienware H", "DELL", "Av. López Mateos", "9876554321", R.drawable.alienware));
-        products.add(new ItemProduct("Lanix H", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac));
+        products = new ArrayList<>();
+        products.add(new ItemProduct("Mac H", "BestBuy", "Av. Patria", "123456789", R.drawable.mac, 4));
+        products.add(new ItemProduct("Alienware H", "DELL", "Av. López Mateos", "9876554321", R.drawable.alienware, 5));
+        products.add(new ItemProduct("Lanix H", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac, 6));
 
-        AdapterProduct adapterProduct = new AdapterProduct(products, this.getContext());
+        adapterProduct = new AdapterProduct(products, this.getContext(), FRAGMENT_HOME);
         recyclerView.setAdapter(adapterProduct);
 
         return rootView;
+    }
+
+    public void changeProduct(ItemProduct itemProduct)
+    {
+        int len = this.products.size();
+        for(int i = 0; i < len; i++)
+            if(this.products.get(i).getCode() == itemProduct.getCode())
+            {
+                this.products.set(i, itemProduct);
+                adapterProduct.notifyDataSetChanged();
+                break;
+            }
     }
 }
 

@@ -1,5 +1,6 @@
 package com.iteso.pdm18_scrollabletabs;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +32,9 @@ import com.iteso.pdm18_scrollabletabs.fragments.FragmentTechnology;
 import java.util.ArrayList;
 
 public class ActivityMain extends AppCompatActivity {
-
+    private FragmentTechnology fragmentTechnology;
+    private FragmentElectronics fragmentElectronics;
+    private FragmentHome fragmentHome;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -115,13 +119,21 @@ public class ActivityMain extends AppCompatActivity {
             switch (position)
             {
                 case 0:
-                    return new FragmentTechnology();
+                    if(fragmentTechnology == null)
+                        fragmentTechnology = new FragmentTechnology();
+                    return fragmentTechnology;
                 case 1:
-                    return new FragmentHome();
+                    if(fragmentHome == null)
+                        fragmentHome = new FragmentHome();
+                    return fragmentHome;
                 case 2:
-                    return new FragmentElectronics();
+                    if(fragmentElectronics == null)
+                        fragmentElectronics = new FragmentElectronics();
+                    return fragmentElectronics;
                 default:
-                    return new FragmentTechnology();
+                    if(fragmentTechnology == null)
+                        fragmentTechnology = new FragmentTechnology();
+                    return fragmentTechnology;
             }
         }
 
@@ -142,6 +154,38 @@ public class ActivityMain extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        ItemProduct itemProduct;
+        int fragmentId;
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                itemProduct = data.getParcelableExtra("ITEM");
+                fragmentId = 0;
+
+                if(data.getExtras() != null)
+                    fragmentId = data.getExtras().getInt("FRAGMENT");
+
+                Log.d( "Error","Retorno ->" + fragmentId);
+                switch (fragmentId) {
+                    case 0:
+                        fragmentTechnology.changeProduct(itemProduct);
+                        break;
+                    case 1:
+                        fragmentHome.changeProduct(itemProduct);
+                        break;
+                    case 2:
+                        fragmentElectronics.changeProduct(itemProduct);
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+    }
 
 }
 

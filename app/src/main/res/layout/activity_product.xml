@@ -73,11 +73,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
+            android:id="@+id/activity_product_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:text="SAVE"/>
         <Button
+            android:id="@+id/activity_product_cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".5"

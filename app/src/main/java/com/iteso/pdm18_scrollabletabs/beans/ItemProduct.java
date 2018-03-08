@@ -13,13 +13,15 @@ public class ItemProduct implements Parcelable{
     private String location;
     private String phone;
     private int image;
+    private int code;
 
-    public ItemProduct(String title, String store, String location, String phone, int image) {
+    public ItemProduct(String title, String store, String location, String phone, int image, int code) {
         this.title = title;
         this.store = store;
         this.location = location;
         this.phone = phone;
         this.image = image;
+        this.code = code;
     }
 
     public ItemProduct(Parcel in)
@@ -29,6 +31,7 @@ public class ItemProduct implements Parcelable{
         location = in.readString();
         phone = in.readString();
         image = in.readInt();
+        code = in.readInt();
     }
 
 
@@ -84,6 +87,15 @@ public class ItemProduct implements Parcelable{
         this.image = image;
     }
 
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+
     @Override
     public String toString() {
         return "ItemProduct{" +
@@ -106,5 +118,6 @@ public class ItemProduct implements Parcelable{
         parcel.writeString(location);
         parcel.writeString(phone);
         parcel.writeInt(image);
+        parcel.writeInt(code);
     }
 }

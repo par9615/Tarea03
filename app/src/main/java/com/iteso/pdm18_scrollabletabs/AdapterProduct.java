@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +25,14 @@ import java.util.ArrayList;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder>{
     ArrayList<ItemProduct> products;
+    private static int fragmentId;
     static Context context;
 
-    public AdapterProduct(ArrayList<ItemProduct> products, Context context){
+    public AdapterProduct(ArrayList<ItemProduct> products, Context context, int fragmentId){
         this.products = products;
         this.context = context;
+        this.fragmentId = fragmentId;
+        System.out.println("Se asigna el adapter del fragmento" + fragmentId);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -49,6 +53,8 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
 
             v.setOnClickListener(this);
             mPhone.setOnClickListener(new OnClickPhone());
+
+
         }
 
         @Override
@@ -56,7 +62,9 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             //Toast.makeText(view.getContext(), itemProduct.toString(), Toast.LENGTH_LONG).show();
             Intent intent  = new Intent(context, ActivityProduct.class);
             intent.putExtra("ITEM", itemProduct);
-            context.startActivity(intent);
+            intent.putExtra("FRAGMENT", fragmentId);
+            Log.d("Error","Llamada -> " + fragmentId);
+            ((ActivityMain)context).startActivityForResult(intent, 1);
 
         }
     }

@@ -18,7 +18,11 @@ import java.util.ArrayList;
  */
 
 public class FragmentElectronics extends android.support.v4.app.Fragment {
-    public FragmentElectronics(){};
+    private AdapterProduct adapterProduct;
+    private ArrayList<ItemProduct> products;
+    private static final int FRAGMENT_ELECTRONICS = 2;
+
+    public FragmentElectronics(){}
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_technology, container, false);
@@ -30,15 +34,27 @@ public class FragmentElectronics extends android.support.v4.app.Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        ArrayList<ItemProduct> products = new ArrayList<>();
-        products.add(new ItemProduct("Mac E", "BestBuy", "Av. Patria", "123456789", R.drawable.mac));
-        products.add(new ItemProduct("Alienware E", "DELL", "Av. López Mateos", "9876554321", R.drawable.alienware));
-        products.add(new ItemProduct("Lanix E", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac));
+        products = new ArrayList<>();
+        products.add(new ItemProduct("Mac E", "BestBuy", "Av. Patria", "123456789", R.drawable.mac, 1));
+        products.add(new ItemProduct("Alienware E", "DELL", "Av. López Mateos", "9876554321", R.drawable.alienware, 2));
+        products.add(new ItemProduct("Lanix E", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac, 3));
 
-        AdapterProduct adapterProduct = new AdapterProduct(products, this.getContext());
+        adapterProduct = new AdapterProduct(products, this.getContext(), FRAGMENT_ELECTRONICS);
         recyclerView.setAdapter(adapterProduct);
 
         return rootView;
+    }
+
+    public void changeProduct(ItemProduct itemProduct)
+    {
+        int len = this.products.size();
+        for(int i = 0; i < len; i++)
+            if(this.products.get(i).getCode() == itemProduct.getCode())
+            {
+                this.products.set(i, itemProduct);
+                adapterProduct.notifyDataSetChanged();
+                break;
+            }
     }
 }
 
