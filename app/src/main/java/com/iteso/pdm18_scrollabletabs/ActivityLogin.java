@@ -36,9 +36,9 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         SharedPreferences sharedPreferences = getSharedPreferences(USER_PREFERENCES, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("USER", user.getName());
-        editor.putString("PWD", user.getPassword());
-        editor.putBoolean("LOGGED", user.isLogged());
+        editor.putString(getString(R.string.USERNAME_PREFERENCE), user.getName());
+        editor.putString(getString(R.string.PASSWORD_PREFERENCE), user.getPassword());
+        editor.putBoolean(getString(R.string.LOGGED_PREFERENCE), user.isLogged());
         editor.apply();
     }
 

@@ -2,6 +2,7 @@ package com.iteso.pdm18_scrollabletabs;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -30,6 +31,8 @@ import com.iteso.pdm18_scrollabletabs.fragments.FragmentHome;
 import com.iteso.pdm18_scrollabletabs.fragments.FragmentTechnology;
 
 import java.util.ArrayList;
+
+import static com.iteso.pdm18_scrollabletabs.Constants.USER_PREFERENCES;
 
 public class ActivityMain extends AppCompatActivity {
     private FragmentTechnology fragmentTechnology;
@@ -93,13 +96,31 @@ public class ActivityMain extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Intent intent;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id)
+        {
+            case R.id.action_logout:
+                intent = new Intent().setClass(getApplicationContext(), ActivityLogin.class);
+                cleanPreferences();
+                startActivity(intent);
+                finish();
+                return true;
+
+            case R.id.action_policy:
+                intent = new Intent().setClass(getApplicationContext(), ActivityPrivacyPolicy.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
+    }
+
+    void cleanPreferences(){
+        SharedPreferences sharedPreferences = getSharedPreferences(USER_PREFERENCES, MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
     }
 
     /**

@@ -46,9 +46,9 @@ public class ActivitySplashScreen extends AppCompatActivity {
     public User loadPreferences(){
         SharedPreferences sharedPreferences = getSharedPreferences(USER_PREFERENCES, MODE_PRIVATE);
         User user = new User();
-        user.setName(sharedPreferences.getString("USER", null));
-        user.setPassword(sharedPreferences.getString("PWD", null));
-        user.setLogged(sharedPreferences.getBoolean("LOGGED", false));
+        user.setName(sharedPreferences.getString(getString(R.string.USERNAME_PREFERENCE), null));
+        user.setPassword(sharedPreferences.getString(getString(R.string.PASSWORD_PREFERENCE), null));
+        user.setLogged(sharedPreferences.getBoolean(getString(R.string.LOGGED_PREFERENCE), false));
         sharedPreferences = null;
         return user;
     }
