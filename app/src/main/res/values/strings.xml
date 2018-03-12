@@ -10,4 +10,7 @@
     <string name="tab_title_0">Technology</string>
     <string name="tab_title_1">Home</string>
     <string name="tab_title_2">Electronics</string>
+    <string name="activity_login_user_hint">Usuario</string>
+    <string name="activity_login_password_hint">Contraseña</string>
+    <string name="activity_login_button_text">LOGIN</string>
 </resources>
