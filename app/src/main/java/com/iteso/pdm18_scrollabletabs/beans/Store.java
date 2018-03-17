@@ -26,6 +26,10 @@ public class Store implements Parcelable {
         this.city = city;
     }
 
+    public Store() {
+
+    }
+
 
     public int getId() {
         return id;
