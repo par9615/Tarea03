@@ -48,9 +48,9 @@ public class ActivityProduct extends AppCompatActivity implements View.OnClickLi
 
         image.setImageResource(itemProduct.getImage());
         title.setText(itemProduct.getTitle());
-        store.setText(itemProduct.getStore());
-        location.setText(itemProduct.getLocation());
-        phone.setText(itemProduct.getPhone());
+        store.setText(itemProduct.getStore().getName());
+        location.setText(itemProduct.getStore().getCity().getName());
+        phone.setText(itemProduct.getStore().getName());
         save.setOnClickListener(this);
         cancel.setOnClickListener(this);
 
@@ -61,14 +61,7 @@ public class ActivityProduct extends AppCompatActivity implements View.OnClickLi
         {
             case R.id.activity_product_save:
                 Intent intent = new Intent();
-                ItemProduct itemProductUpdated = new ItemProduct(
-                        title.getText().toString(),
-                        store.getText().toString(),
-                        location.getText().toString(),
-                        phone.getText().toString(),
-                        itemProduct.getImage(),
-                        itemProduct.getCode()
-                );
+                ItemProduct itemProductUpdated = new ItemProduct();
                 intent.putExtra("ITEM", itemProductUpdated);
                 intent.putExtra("FRAGMENT", fragmentId);
                 setResult(Activity.RESULT_OK, intent);

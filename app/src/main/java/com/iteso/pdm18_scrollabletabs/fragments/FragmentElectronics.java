@@ -35,9 +35,9 @@ public class FragmentElectronics extends android.support.v4.app.Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         products = new ArrayList<>();
-        products.add(new ItemProduct("Mac E", "BestBuy", "Av. Patria", "123456789", R.drawable.mac, 1));
+       /* products.add(new ItemProduct("Mac E", "BestBuy", "Av. Patria", "123456789", R.drawable.mac, 1));
         products.add(new ItemProduct("Alienware E", "DELL", "Av. López Mateos", "9876554321", R.drawable.alienware, 2));
-        products.add(new ItemProduct("Lanix E", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac, 3));
+        products.add(new ItemProduct("Lanix E", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac, 3));*/
 
         adapterProduct = new AdapterProduct(products, this.getContext(), FRAGMENT_ELECTRONICS);
         recyclerView.setAdapter(adapterProduct);

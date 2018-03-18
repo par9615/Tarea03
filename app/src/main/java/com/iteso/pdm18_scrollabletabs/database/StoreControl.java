@@ -39,7 +39,17 @@ public class StoreControl {
     ArrayList<Store> getStores(DataBaseHandler dh) {
         SQLiteDatabase db = dh.getReadableDatabase();
         ArrayList<Store> stores = new ArrayList<>();
-        String select = "SELECT id, name, phone, idcity, thumbnail, latitude, longitude, City.id, City.name FROM Store INNER JOIN City ON Store.idcity = City.id";
+        String select = "SELECT id, " +
+                "name, " +
+                "phone, " +
+                "idcity, " +
+                "thumbnail, " +
+                "latitude, " +
+                "longitude, " +
+                "City.id, " +
+                "City.name " +
+                "FROM Store " +
+                "INNER JOIN City ON Store.idcity = City.id";
         Cursor cursor = db.rawQuery(select, null);
 
         while(cursor.moveToNext())
@@ -76,7 +86,17 @@ public class StoreControl {
         SQLiteDatabase db = dh.getReadableDatabase();
         Store store = null;
         City city = null;
-        String select = "SELECT id, name, phone, idcity, thumbnail, latitude, longitude, City.id, City.name FROM Store INNER JOIN City ON Store.idcity = City.id " +
+        String select = "SELECT " +
+                "id," +
+                "name, " +
+                "phone, " +
+                "idcity, " +
+                "thumbnail, " +
+                "latitude, " +
+                "longitude, " +
+                "City.id, " +
+                "City.name " +
+                "FROM Store INNER JOIN City ON Store.idcity = City.id " +
                 "WHERE Store.id = " + idStore;
         Cursor cursor = db.rawQuery(select, null);
 

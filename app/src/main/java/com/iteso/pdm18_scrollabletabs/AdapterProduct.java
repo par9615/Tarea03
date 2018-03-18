@@ -81,9 +81,9 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.itemProduct = products.get(position);
         holder.mTitle.setText(products.get(position).getTitle());
-        holder.mStore.setText(products.get(position).getStore());
-        holder.mLocation.setText(products.get(position).getLocation());
-        holder.mPhone.setText(products.get(position).getPhone());
+        holder.mStore.setText(products.get(position).getStore().getName());
+        holder.mLocation.setText(products.get(position).getStore().getCity().getName());
+        holder.mPhone.setText(products.get(position).getStore().getPhone());
         holder.mImage.setImageResource(products.get(position).getImage());
     }
 

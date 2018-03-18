@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.iteso.pdm18_scrollabletabs.AdapterProduct;
 import com.iteso.pdm18_scrollabletabs.R;
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class FragmentTechnology extends android.support.v4.app.Fragment {
     private AdapterProduct adapterProduct;
     private ArrayList<ItemProduct> products;
     private static final int FRAGMENT_TECHNOLOGY = 0;
+    private DataBaseHandler dataBaseHandler;
     public FragmentTechnology(){}
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,9 +37,8 @@ public class FragmentTechnology extends android.support.v4.app.Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         products = new ArrayList<>();
-        products.add(new ItemProduct("Mac T", "BestBuy", "Av. Patria", "123456789", R.drawable.mac, 7));
-        products.add(new ItemProduct("Alienware T", "DELL", "Av. López Mateos", "9876554321", R.drawable.alienware, 8));
-        products.add(new ItemProduct("Lanix T", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac, 9));
+        dataBaseHandler = DataBaseHandler.getInstance(getContext());
+        
 
         adapterProduct = new AdapterProduct(products, this.getContext(), FRAGMENT_TECHNOLOGY);
         recyclerView.setAdapter(adapterProduct);

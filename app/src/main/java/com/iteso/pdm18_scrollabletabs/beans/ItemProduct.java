@@ -24,6 +24,10 @@ public class ItemProduct implements Parcelable{
         this.category = category;
     }
 
+    public ItemProduct() {
+
+    }
+
 
     @Override
     public int describeContents() {
