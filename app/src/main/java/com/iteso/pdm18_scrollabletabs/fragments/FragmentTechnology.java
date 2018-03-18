@@ -37,8 +37,6 @@ public class FragmentTechnology extends android.support.v4.app.Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         products = new ArrayList<>();
-        dataBaseHandler = DataBaseHandler.getInstance(getContext());
-        
 
         adapterProduct = new AdapterProduct(products, this.getContext(), FRAGMENT_TECHNOLOGY);
         recyclerView.setAdapter(adapterProduct);

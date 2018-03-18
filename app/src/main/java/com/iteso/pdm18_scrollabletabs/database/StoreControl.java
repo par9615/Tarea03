@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class StoreControl {
 
-    void addStore(Store store, DataBaseHandler dh) {
+    public void addStore(Store store, DataBaseHandler dh) {
         SQLiteDatabase db = dh.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("id", store.getId());
@@ -36,16 +36,17 @@ public class StoreControl {
 
     }
 
-    ArrayList<Store> getStores(DataBaseHandler dh) {
+    public ArrayList<Store> getStores(DataBaseHandler dh) {
         SQLiteDatabase db = dh.getReadableDatabase();
         ArrayList<Store> stores = new ArrayList<>();
-        String select = "SELECT id, " +
-                "name, " +
-                "phone, " +
-                "idcity, " +
-                "thumbnail, " +
-                "latitude, " +
-                "longitude, " +
+        String select = "SELECT " +
+                "Store.id, " +
+                "Store.name, " +
+                "Store.phone, " +
+                "Store.idcity, " +
+                "Store.thumbnail, " +
+                "Store.latitude, " +
+                "Store.longitude, " +
                 "City.id, " +
                 "City.name " +
                 "FROM Store " +
@@ -82,7 +83,7 @@ public class StoreControl {
         return stores;
     }
 
-    Store getStoreById(int idStore, DataBaseHandler dh) {
+    public Store getStoreById(int idStore, DataBaseHandler dh) {
         SQLiteDatabase db = dh.getReadableDatabase();
         Store store = null;
         City city = null;

@@ -26,6 +26,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+import com.iteso.pdm18_scrollabletabs.beans.Store;
+import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
+import com.iteso.pdm18_scrollabletabs.database.StoreControl;
 import com.iteso.pdm18_scrollabletabs.fragments.FragmentElectronics;
 import com.iteso.pdm18_scrollabletabs.fragments.FragmentHome;
 import com.iteso.pdm18_scrollabletabs.fragments.FragmentTechnology;
@@ -38,6 +41,7 @@ public class ActivityMain extends AppCompatActivity {
     private FragmentTechnology fragmentTechnology;
     private FragmentElectronics fragmentElectronics;
     private FragmentHome fragmentHome;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a

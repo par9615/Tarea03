@@ -2,11 +2,17 @@ package com.iteso.pdm18_scrollabletabs;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.iteso.pdm18_scrollabletabs.beans.City;
+import com.iteso.pdm18_scrollabletabs.beans.Store;
 import com.iteso.pdm18_scrollabletabs.beans.User;
+import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
+import com.iteso.pdm18_scrollabletabs.database.StoreControl;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,8 +20,9 @@ import static com.iteso.pdm18_scrollabletabs.Constants.SPLASH_SCREEN_DELAY;
 import static com.iteso.pdm18_scrollabletabs.Constants.USER_PREFERENCES;
 
 public class ActivitySplashScreen extends AppCompatActivity {
-
-
+    private DataBaseHandler dataBaseHandler;
+    private ArrayList<Store> stores;
+    private StoreControl storeControl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +47,59 @@ public class ActivitySplashScreen extends AppCompatActivity {
         Timer timer = new Timer();
         timer.schedule(task, SPLASH_SCREEN_DELAY);
 
+        dataBaseHandler = DataBaseHandler.getInstance(getApplicationContext());
+        storeControl = new StoreControl();
+        stores = storeControl.getStores(dataBaseHandler);
+
+        if(stores.size() == 0)
+        {
+
+            Store store  = new Store(
+                    0,
+                    "Walmart",
+                    "123456",
+                    R.drawable.alienware,
+                    3.1416,
+                    360.00,
+                    new City(
+                            0,
+                            "Guadalajara"
+                    )
+            );
+
+            storeControl.addStore(store, dataBaseHandler);
+
+            store  = new Store(
+                    1,
+                    "Costco",
+                    "11111",
+                    R.drawable.mac,
+                    1.84,
+                    1.010101,
+                    new City(
+                            1,
+                            "Monterrey"
+                    )
+            );
+
+            storeControl.addStore(store, dataBaseHandler);
+
+            store  = new Store(
+                    2,
+                    "BestBuy",
+                    "444444",
+                    R.drawable.bestbuy,
+                    9.9999,
+                    123.123,
+                    new City(
+                            2,
+                            "Zacatecas"
+                    )
+            );
+
+            storeControl.addStore(store, dataBaseHandler);
+
+        }
 
     }
 
