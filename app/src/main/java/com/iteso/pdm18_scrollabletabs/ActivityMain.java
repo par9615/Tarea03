@@ -63,7 +63,7 @@ public class ActivityMain extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.activity_main_tabs);
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.activity_main_tabs);
 
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -80,7 +80,9 @@ public class ActivityMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             Intent intent = new Intent(getApplicationContext(), ActivityItem.class);
+        
             startActivity(intent);
+
             }
         });
 
@@ -193,7 +195,6 @@ public class ActivityMain extends AppCompatActivity {
                 if(data.getExtras() != null)
                     fragmentId = data.getExtras().getInt("FRAGMENT");
 
-                Log.d( "Error","Retorno ->" + fragmentId);
                 switch (fragmentId) {
                     case 0:
                         fragmentTechnology.changeProduct(itemProduct);
@@ -211,6 +212,7 @@ public class ActivityMain extends AppCompatActivity {
             }
         }
     }
+
 
 }
 

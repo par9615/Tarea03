@@ -29,7 +29,6 @@ public class ItemProductControl {
 
         db.insert("Product", null, productValues);
 
-        //TODO check how to insert StoreProduct.id
         storeProductValues.put("idproduct", itemProduct.getCode());
         storeProductValues.put("idstore", itemProduct.getStore().getId());
 

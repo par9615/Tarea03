@@ -56,11 +56,11 @@ public class ActivitySplashScreen extends AppCompatActivity {
 
             Store store  = new Store(
                     0,
-                    "Costco 2",
-                    "11111",
+                    "RadioShack",
+                    "12345",
                     R.drawable.mac,
-                    1.84,
-                    1.010101,
+                    2.222,
+                    3.3333,
                     new City(
                             0,
                             "Guadalajara"

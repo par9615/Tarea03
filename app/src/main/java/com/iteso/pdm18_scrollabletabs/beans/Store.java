@@ -124,4 +124,9 @@ public class Store implements Parcelable {
             return new Store[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

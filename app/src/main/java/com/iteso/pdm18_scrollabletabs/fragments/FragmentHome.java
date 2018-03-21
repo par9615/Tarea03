@@ -8,17 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.iteso.pdm18_scrollabletabs.AdapterProduct;
-import com.iteso.pdm18_scrollabletabs.Constants;
 import com.iteso.pdm18_scrollabletabs.R;
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
-import com.iteso.pdm18_scrollabletabs.beans.Store;
 import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
 import com.iteso.pdm18_scrollabletabs.database.ItemProductControl;
-import com.iteso.pdm18_scrollabletabs.database.StoreControl;
 
 import java.util.ArrayList;
 
-import static com.iteso.pdm18_scrollabletabs.Constants.FRAGMENT_HOME;
+import static com.iteso.pdm18_scrollabletabs.Constants.HOME;
 
 /**
  * Created by Cursos on 28/02/2018.
@@ -48,7 +45,7 @@ public class FragmentHome extends android.support.v4.app.Fragment {
 
         products = itemProductControl.getItemProductsByCategory(1, dataBaseHandler);
 
-        adapterProduct = new AdapterProduct(products, this.getContext(), FRAGMENT_HOME);
+        adapterProduct = new AdapterProduct(products, this.getContext(), HOME);
         recyclerView.setAdapter(adapterProduct);
 
         return rootView;
@@ -64,6 +61,11 @@ public class FragmentHome extends android.support.v4.app.Fragment {
                 adapterProduct.notifyDataSetChanged();
                 break;
             }
+    }
+
+    public void insertProduct(ItemProduct itemProduct) {
+        this.products.add(itemProduct);
+        adapterProduct.notifyDataSetChanged();
     }
 }
 

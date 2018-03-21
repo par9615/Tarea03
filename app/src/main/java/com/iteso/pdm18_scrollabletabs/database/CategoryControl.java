@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 
 public class CategoryControl {
-    ArrayList<Category> getCategories(DataBaseHandler dh) {
+    public ArrayList<Category> getCategories(DataBaseHandler dh) {
         SQLiteDatabase db = dh.getReadableDatabase();
         ArrayList<Category> categories  = new ArrayList<>();
         String select = "SELECT id, name FROM Category";
