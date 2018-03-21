@@ -15,4 +15,6 @@
     <string name="USERNAME_PREFERENCE">USER</string>
     <string name="PASSWORD_PREFERENCE">PWD</string>
     <string name="LOGGED_PREFERENCE">LOGGED</string>
+    <string name="save">SAVE</string>
+    <string name="cancel">CANCEL</string>
 </resources>

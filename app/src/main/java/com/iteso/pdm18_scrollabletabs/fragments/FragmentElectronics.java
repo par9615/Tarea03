@@ -8,10 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.iteso.pdm18_scrollabletabs.AdapterProduct;
+import com.iteso.pdm18_scrollabletabs.Constants;
 import com.iteso.pdm18_scrollabletabs.R;
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+import com.iteso.pdm18_scrollabletabs.beans.Store;
+import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
+import com.iteso.pdm18_scrollabletabs.database.ItemProductControl;
+import com.iteso.pdm18_scrollabletabs.database.StoreControl;
 
 import java.util.ArrayList;
+
+import static com.iteso.pdm18_scrollabletabs.Constants.FRAGMENT_ELECTRONICS;
 
 /**
  * Created by Cursos on 28/02/2018.
@@ -20,7 +27,9 @@ import java.util.ArrayList;
 public class FragmentElectronics extends android.support.v4.app.Fragment {
     private AdapterProduct adapterProduct;
     private ArrayList<ItemProduct> products;
-    private static final int FRAGMENT_ELECTRONICS = 2;
+    private DataBaseHandler dataBaseHandler;
+    private ItemProductControl itemProductControl;
+
 
     public FragmentElectronics(){}
 
@@ -34,10 +43,10 @@ public class FragmentElectronics extends android.support.v4.app.Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        products = new ArrayList<>();
-       /* products.add(new ItemProduct("Mac E", "BestBuy", "Av. Patria", "123456789", R.drawable.mac, 1));
-        products.add(new ItemProduct("Alienware E", "DELL", "Av. López Mateos", "9876554321", R.drawable.alienware, 2));
-        products.add(new ItemProduct("Lanix E", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac, 3));*/
+        dataBaseHandler = DataBaseHandler.getInstance(getContext());
+        itemProductControl = new ItemProductControl();
+
+        products = itemProductControl.getItemProductsByCategory(2, dataBaseHandler);
 
         adapterProduct = new AdapterProduct(products, this.getContext(), FRAGMENT_ELECTRONICS);
         recyclerView.setAdapter(adapterProduct);

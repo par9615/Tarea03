@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ItemProductControl {
 
-    void addItemProduct(ItemProduct itemProduct, DataBaseHandler dh) {
+    public void addItemProduct(ItemProduct itemProduct, DataBaseHandler dh) {
         SQLiteDatabase db = dh.getWritableDatabase();
         ContentValues productValues = new ContentValues();
         ContentValues storeProductValues = new ContentValues();
@@ -45,16 +45,15 @@ public class ItemProductControl {
 
     }
 
-    ArrayList<ItemProduct> getItemProductsByCategory(int idCategory, DataBaseHandler dh) {
+    public ArrayList<ItemProduct> getItemProductsByCategory(int idCategory, DataBaseHandler dh) {
         ArrayList<ItemProduct> products = new ArrayList<>();
         SQLiteDatabase db = dh.getReadableDatabase();
-        String select = "SELECT" +
-                "idproduct, " +
-                "title, " +
-                "image, " +
-                "idcategory " +
-                "Category.id " +
-                "Category.name " +
+        String select = "SELECT " +
+                "Product.idproduct, " +
+                "Product.title, " +
+                "Product.image, " +
+                "Category.id, " +
+                "Category.name, " +
                 "Store.id," +
                 "Store.name, " +
                 "Store.phone, " +
@@ -62,12 +61,12 @@ public class ItemProductControl {
                 "Store.latitude, " +
                 "Store.longitude, " +
                 "City.id, " +
-                "City.name, " +
+                "City.name " +
                 "FROM Product " +
                 "INNER JOIN Category ON Product.idcategory = Category.id " +
-                "INNER JOIN StoreProduct ON Product.id = StoreProduct.idproduct" +
-                "INNER JOIN Store ON Store.idstore = Store.id" +
-                "INNER JOIN City ON Store.idcity = City.id" +
+                "INNER JOIN StoreProduct ON Product.idproduct = StoreProduct.idproduct " +
+                "INNER JOIN Store ON Store.id = StoreProduct.idstore " +
+                "INNER JOIN City ON Store.idcity = City.id " +
                 "WHERE Product.idcategory = " + idCategory;
 
         Cursor cursor = db.rawQuery(select, null);

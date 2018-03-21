@@ -74,10 +74,10 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
 
         for(int i = 0; i < categories.length; i++)
-            db.execSQL("INSERT INTO Category (id, name) VALUES (" + (i+1) + "," + "'" + categories[i] + "'" + ")");
+            db.execSQL("INSERT INTO Category (id, name) VALUES (" + (i) + "," + "'" + categories[i] + "'" + ")");
 
         for(int i = 0; i < cities.length; i++)
-            db.execSQL("INSERT INTO City (id, name) VALUES (" + (i+1) + "," + "'" + cities[i] + "'" + ")");
+            db.execSQL("INSERT INTO City (id, name) VALUES (" + (i) + "," + "'" + cities[i] + "'" + ")");
 
     }
 

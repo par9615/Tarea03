@@ -8,10 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.iteso.pdm18_scrollabletabs.AdapterProduct;
+import com.iteso.pdm18_scrollabletabs.Constants;
 import com.iteso.pdm18_scrollabletabs.R;
 import com.iteso.pdm18_scrollabletabs.beans.ItemProduct;
+import com.iteso.pdm18_scrollabletabs.beans.Store;
+import com.iteso.pdm18_scrollabletabs.database.DataBaseHandler;
+import com.iteso.pdm18_scrollabletabs.database.ItemProductControl;
+import com.iteso.pdm18_scrollabletabs.database.StoreControl;
 
 import java.util.ArrayList;
+
+import static com.iteso.pdm18_scrollabletabs.Constants.FRAGMENT_HOME;
 
 /**
  * Created by Cursos on 28/02/2018.
@@ -20,7 +27,9 @@ import java.util.ArrayList;
 public class FragmentHome extends android.support.v4.app.Fragment {
     private AdapterProduct adapterProduct;
     private ArrayList<ItemProduct> products;
-    private static final int FRAGMENT_HOME = 1;
+    private DataBaseHandler dataBaseHandler;
+    private ItemProductControl itemProductControl;
+
 
     public FragmentHome(){}
 
@@ -34,10 +43,10 @@ public class FragmentHome extends android.support.v4.app.Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        products = new ArrayList<>();
-       /* products.add(new ItemProduct("Mac H", "BestBuy", "Av. Patria", "123456789", R.drawable.mac, 4));
-        products.add(new ItemProduct("Alienware H", "DELL", "Av. López Mateos", "9876554321", R.drawable.alienware, 5));
-        products.add(new ItemProduct("Lanix H", "Saint Jhonny", "Taiwan de Dios", "1213141516", R.drawable.mac, 6));*/
+        dataBaseHandler = DataBaseHandler.getInstance(getContext());
+        itemProductControl = new ItemProductControl();
+
+        products = itemProductControl.getItemProductsByCategory(1, dataBaseHandler);
 
         adapterProduct = new AdapterProduct(products, this.getContext(), FRAGMENT_HOME);
         recyclerView.setAdapter(adapterProduct);

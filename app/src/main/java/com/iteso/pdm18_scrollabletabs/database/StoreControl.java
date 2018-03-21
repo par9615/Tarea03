@@ -25,7 +25,7 @@ public class StoreControl {
         values.put("thumbnail", store.getThumbnail());
         values.put("latitude", store.getLatitude());
         values.put("longitude", store.getLongitude());
-        db.insert("Category", null, values);
+        db.insert("Store", null, values);
 
         try {
             db.close();

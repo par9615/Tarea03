@@ -50,17 +50,17 @@ public class ActivitySplashScreen extends AppCompatActivity {
         dataBaseHandler = DataBaseHandler.getInstance(getApplicationContext());
         storeControl = new StoreControl();
         stores = storeControl.getStores(dataBaseHandler);
-
+        //TODO add real images of the stores
         if(stores.size() == 0)
         {
 
             Store store  = new Store(
                     0,
-                    "Walmart",
-                    "123456",
-                    R.drawable.alienware,
-                    3.1416,
-                    360.00,
+                    "Costco 2",
+                    "11111",
+                    R.drawable.mac,
+                    1.84,
+                    1.010101,
                     new City(
                             0,
                             "Guadalajara"
@@ -78,7 +78,7 @@ public class ActivitySplashScreen extends AppCompatActivity {
                     1.010101,
                     new City(
                             1,
-                            "Monterrey"
+                            "Ciudad de México"
                     )
             );
 
@@ -93,13 +93,16 @@ public class ActivitySplashScreen extends AppCompatActivity {
                     123.123,
                     new City(
                             2,
-                            "Zacatecas"
+                            "Monterrey"
                     )
             );
 
             storeControl.addStore(store, dataBaseHandler);
 
         }
+
+        stores = storeControl.getStores(dataBaseHandler);
+
 
     }
 
